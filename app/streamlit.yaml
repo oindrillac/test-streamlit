@@ -7,10 +7,8 @@ data:
     http_address = "0.0.0.0:4180"
     upstreams = ["http://127.0.0.1:8501/"]
     email_domains = ["*"]
-    client_id = "<GOOGLE_CLIENT_ID>"
-    client_secret = "<GOOGLE_CLIENT_SECRET>"
-    cookie_secret = "<16, 24, or 32 bytes>"
-    redirect_url = <REDIRECT_URL>
+    skip_provider_button = true
+    pass_basic_auth = false
 
 ---
 apiVersion: apps/v1
@@ -49,7 +47,7 @@ spec:
             - mountPath: "/etc/oauth2-proxy"
               name: oauth2-config
         - name: streamlit
-          image: gcr.io/GCP_PROJECT_ID/k8s-streamlit:test
+          image: quay.io/ochatter/streamlit-test:test
           imagePullPolicy: Always
           ports:
             - containerPort: 8501
